@@ -24,6 +24,23 @@ router.post('/newBook', function(req, res) {
 	})
 });
 
+router.get('/getEmployee', function(req, res) {
+	var age = req.query.age;
+	console.log("Age", age);
+	employee.find({
+		age: age
+	}).then(function(response) {
+		res.json({
+			data: response,
+			status: 200
+		})
+	}).catch(function(err) {
+		res.json({
+			data: err
+		})
+	})
+})
+
 router.put('/updateBook', function(req, res) {
 	var code = req.body.code;
 	var obj = {
